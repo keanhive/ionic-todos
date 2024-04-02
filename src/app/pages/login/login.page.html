@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>My Todos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" scrollY="false">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input aria-label="Email" type="email" formControlName="email"></ion-input>
+      <ion-text
+        color="danger"
+        *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.touched"
+      >
+        Email is required
+      </ion-text>
+      <ion-text
+        color="danger"
+        *ngIf="loginForm.controls.email.hasError('email') && loginForm.controls.email.touched"
+      >
+        Email is invalid
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input aria-label="Password" type="password" formControlName="password"></ion-input>
+      <ion-text
+        color="danger"
+        *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched"
+      >
+        Password is required
+      </ion-text>
+      <ion-text
+        color="danger"
+        *ngIf="loginForm.controls.password.hasError('minlength') && loginForm.controls.password.touched"
+      >
+        Password must be at least 6 characters
+      </ion-text>
+    </ion-item>
+
+    <ion-button
+      class="ion-margin"
+      expand="block"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </ion-button>
+  </form>
+
+  <div class="ion-text-center">
+    Don't have an account?
+    <a routerLink="/register">Sign up</a>
+  </div>
+</ion-content>

@@ -1,20 +1,14 @@
-import { enableProdMode } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { RouteReuseStrategy, provideRouter } from '@angular/router';
-import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
-
-import { routes } from './app/app.routes';
-import { AppComponent } from './app/app.component';
-import { environment } from './environments/environment';
+import {enableProdMode} from '@angular/core';
+import {bootstrapApplication} from '@angular/platform-browser';
+import {AppComponent} from './app/app.component';
+import {environment} from './environments/environment';
+import {appConfig} from "./app/app.config";
+import {defineCustomElements} from "@ionic/pwa-elements/loader";
 
 if (environment.production) {
   enableProdMode();
 }
+bootstrapApplication(AppComponent, appConfig);
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideIonicAngular(),
-    provideRouter(routes),
-  ],
-});
+defineCustomElements(window);
+

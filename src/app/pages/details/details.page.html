@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Update Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="todo; else loading">
+    <ion-card-content>
+      <ion-button
+              *ngIf="!todoImage"
+              fill="outline"
+              expand="block"
+              (click)="selectImage()"
+      >Add Image</ion-button
+      >
+      <ion-img *ngIf="todoImage" [src]="todoImage" />
+
+      <ion-item>
+        <ion-label position="stacked">Task</ion-label>
+        <ion-input aria-label="Task" [(ngModel)]="todo.task"> </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea aria-label="Description"
+                placeholder="Describe your todo"
+                [(ngModel)]="todo.desc"
+                rows="3"
+        >
+        </ion-textarea>
+      </ion-item>
+      <ion-button expand="block" (click)="update()">Update</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #loading>
+    <ion-card>
+      <ion-card-content>
+        <ion-button fill="outline" expand="block" disabled="true"
+        >Add Image</ion-button
+        >
+        <ion-skeleton-text
+                animated="true"
+                style="width: 100%; height: 300px"
+        ></ion-skeleton-text>
+        <ion-item>
+          <ion-skeleton-text animated="true"></ion-skeleton-text>
+        </ion-item>
+        <ion-item>
+          <ion-skeleton-text animated="true"></ion-skeleton-text>
+          <ion-skeleton-text animated="true"></ion-skeleton-text>
+          <ion-skeleton-text animated="true"></ion-skeleton-text>
+        </ion-item>
+        <ion-button expand="block" fill="">Update</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>
